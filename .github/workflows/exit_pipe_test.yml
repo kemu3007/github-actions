@@ -1,0 +1,13 @@
+name: exit_pipe_test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          exit 1 |& tee -a $GITHUB_STEP_SUMMARY
+          exit ${PIPESTATUS[0]}
